@@ -1,35 +1,35 @@
-package paczka;
+package game;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-class Konfiguracja
+class Configuration
 {
-	Integer iloœæ, pu³ap;
-	Float tempo, grawitacja;
-	Konfiguracja(int il, int p, float t, float g)
+	Integer number, roof;
+	Float tempo, gravity;
+	Configuration(int nr, int r, float t, float g)
 	{
-		iloœæ=il;
-		pu³ap=p;
+		number=nr;
+		roof=r;
 		tempo=t;
-		grawitacja=g;
+		gravity=g;
 	}
 }
 class Config  extends JPanel
 {
-	Konfiguracja conf = new Konfiguracja(10, 150, 1.6f, 0.08f);
-	String[] jbText = {"Iloœæ przeszkód", "Wysokoœæ skoków", "Szybkoœæ biegu", "Grawitacja"};
-	String[] jtfText = {conf.iloœæ.toString(), conf.pu³ap.toString(), conf.tempo.toString(), conf.grawitacja.toString()};
-	int l_opcji=jbText.length;
-	JButton graj = new JButton("Graj!"), powrót = new JButton("Powrót");
-	JButton[] jb = new JButton[l_opcji];
-	JTextField[] jtf = new JTextField[l_opcji];
+	Configuration conf = new Configuration(10, 150, 1.6f, 0.08f);
+	String[] jbText = {"Number of stumps", "Height of jumps", "Speed of run", "Gravity force"};
+	String[] jtfText = {conf.number.toString(), conf.roof.toString(), conf.tempo.toString(), conf.gravity.toString()};
+	int optionNr=jbText.length;
+	JButton play = new JButton("Play!"), back = new JButton("Back");
+	JButton[] jb = new JButton[optionNr];
+	JTextField[] jtf = new JTextField[optionNr];
 	Config()
 	{
-		setLayout(new GridLayout(l_opcji+1,2));
-		add(graj);
-		add(powrót);
-		for(int i=0; i<l_opcji; i++)
+		setLayout(new GridLayout(optionNr+1,2));
+		add(play);
+		add(back);
+		for(int i=0; i<optionNr; i++)
 		{
 			jb[i]=new JButton(jbText[i]);
 			jtf[i]=new JTextField(jtfText[i]);
