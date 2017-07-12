@@ -2,7 +2,7 @@ package game;
 import java.awt.image.BufferedImage;
 class Man extends Physical
 {
-	static BufferedImage bitmap=Util.load("ludzik");
+	static BufferedImage bitmap=Util.load("guy");
 	float gravity=0.08f;
 	int roof=100;
 	boolean jump=false, ground=true;
