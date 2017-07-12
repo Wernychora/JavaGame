@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 class Face extends JPanel
 {
-	int l_misji=10;
+	int missionNr=10;
 	boolean game=false;
 	BufferedImage background;
 	MainClass base;
