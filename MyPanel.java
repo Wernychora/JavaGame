@@ -1,4 +1,4 @@
-package paczka;
+package game;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -8,43 +8,43 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 class MyPanel extends JPanel
 {
-	int time=0, zaliczone=0, dead=1000000000;
-	boolean przegrana=false, wygrana=false;
-	static Konfiguracja k = new Konfiguracja(10, 150, 1.7f, 0.08f);
-	BufferedImage t³o;
-	Ludzik ludzik;
-	ArrayList <Przeszkoda> pieñki = new ArrayList <Przeszkoda>();
-	MyPanel(Konfiguracja kk) 
+	int time=0, checked=0, dead=1000000000;
+	boolean defeat=false, victory=false;
+	static Configuration k = new Configuration(10, 150, 1.7f, 0.08f);
+	BufferedImage background;
+	Man guy;
+	ArrayList <Stump> stumps = new ArrayList <Stump>();
+	MyPanel(Configuration kk) 
 	{
 		k=kk;
-		t³o=Util.wczytaj("t³o");
-		ludzik = new Ludzik(k.pu³ap, k.grawitacja);
-		for(int i=1000; i<500*k.iloœæ+1000; i+=500)
-		pieñki.add(new Przeszkoda(i));
+		background=Util.load("background");
+		guy = new Man(k.roof, k.gravity);
+		for(int i=1000; i<500*k.number+1000; i+=500)
+		stumps.add(new Stump(i));
 		setPreferredSize(new Dimension(800, 600));
 	}
 	protected void paintComponent(Graphics g) 
 	{
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(t³o, -(int)(time*k.tempo)%800, 0, null);
-		g2.drawImage(t³o, 800-(int)(time*k.tempo)%800, 0, null);
-		ludzik.¿yj();
-		g2.drawImage(ludzik.bitmapa, 300, (int)ludzik.y, null);
-		for(Przeszkoda p : pieñki)
+		g2.drawImage(background, -(int)(time*k.tempo)%800, 0, null);
+		g2.drawImage(background, 800-(int)(time*k.tempo)%800, 0, null);
+		ludzik.live();
+		g2.drawImage(guy.bitmap, 300, (int)guy.y, null);
+		for(Stump s : stumps)
 		{
-			p.x=p.miejsce-(int)(time*k.tempo);
-			if(p.x<100)zaliczone++;
-			g2.drawImage(p.bitmapa, (int)p.x, 280, null);
-			if(Util.kolizja(ludzik, p))dead=time;
-			if(time-dead>50)przegrana=true;
+			s.x=s.place-(int)(time*k.tempo);
+			if(s.x<100)checked++;
+			g2.drawImage(s.bitmap, (int)s.x, 280, null);
+			if(Util.colision(guy, s))dead=time;
+			if(time-dead>50)defeat=true;
 		}
-		g2.drawString("Pieñki "+zaliczone+"/"+k.iloœæ, 20, 30);
-		if(zaliczone==k.iloœæ)wygrana=true;
-		zaliczone=0;
+		g2.drawString("Stumps "+checked+"/"+k.number, 20, 30);
+		if(checked==k.number)victory=true;
+		checked=0;
 	}
-	void klawisz(KeyEvent e)
+	void key(KeyEvent e)
 	{
-		if(e.getKeyChar()==' ' && ludzik.ziemia)ludzik.skok=true;
+		if(e.getKeyChar()==' ' && guy.ground)guy.jump=true;
 	}
 }
