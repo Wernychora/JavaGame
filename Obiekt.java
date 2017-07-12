@@ -1,12 +1,12 @@
-package paczka;
-class Obiekt 
+package game;
+class Physical 
 {
-	int wys, szer;
+	int heigh, width;
 	float x, y;
-	Obiekt(int w, int sz, float xx, float yy)
+	Obiekt(int h, int w, float xx, float yy)
 	{
-		wys=w;
-		szer=sz;
+		heigh=h;
+		width=w;
 		x=xx;
 		y=yy;
 	}
