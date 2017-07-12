@@ -43,7 +43,7 @@ public class MainClass extends JFrame
 	}
 	public MainClass() 
 	{
-		super("Rysowanie");
+		super("Painting");
 		face = new Face(this);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation(screenSize.width/2-400, screenSize.height/2-300);		
